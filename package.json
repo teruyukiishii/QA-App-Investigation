@@ -4,6 +4,7 @@
   "description": "",
   "dependencies": {
     "axios": "^0.17.0",
+    "express": "^4.16.2",
     "onsenui": "2.4.x",
     "vue": "2.3.x",
     "vue-loader": "11.0.0",
