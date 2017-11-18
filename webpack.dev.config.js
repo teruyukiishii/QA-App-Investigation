@@ -112,7 +112,13 @@ module.exports = {
       template: 'src/public/index.html.ejs',
       chunksSortMode: 'dependency'
     }),
-    new ProgressBarPlugin()
+    new ProgressBarPlugin(),
+    new webpack.DefinePlugin({
+      'process.env': {
+        'API_DOMAIN_URL': JSON.stringify('http://ishii.test.com:3000/'),
+        'FRONT_DOMAIN_URL': JSON.stringify('http://ishii.test.com:8000/')
+      }
+    })
   ],
 
   resolveLoader: {

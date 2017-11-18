@@ -33,7 +33,7 @@ module.exports = {
   },
 
   output: {
-    path: path.join(__dirname, 'www'),
+    path: path.join(__dirname, 'www/public'),
     filename: '[name].bundle.js',
     chunkFilename: '[name].chunk.js'
   },
@@ -139,7 +139,13 @@ module.exports = {
       from: path.join(__dirname, 'src', 'public'),
       ignore: ['index.html.ejs']
     }]),
-    new ProgressBarPlugin()
+    new ProgressBarPlugin(),
+    new webpack.DefinePlugin({
+      'process.env': {
+        'API_DOMAIN_URL': JSON.stringify('https://rocky-scrubland-17659.herokuapp.com/'),
+        'FRONT_DOMAIN_URL': JSON.stringify('http://titeck.html.xdomain.jp/')
+      }
+    })
   ],
 
   resolveLoader: {

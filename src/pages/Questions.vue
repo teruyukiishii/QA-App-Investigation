@@ -41,7 +41,7 @@ export default {
     }
   },
   mounted() {
-    axios.get("http://rocky-scrubland-17659.herokuapp.com/questions")
+    axios.get(process.env.API_DOMAIN_URL + "questions")
     .then(response => {
       Vue.set(this, 'results', response.data)
       this.$emit('refresh')

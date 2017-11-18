@@ -6,10 +6,10 @@
           <v-ons-toolbar-button>
             <v-ons-icon icon="md-menu"></v-ons-icon>
           </v-ons-toolbar-button>
-          <v-ons-button @click="login">
+          <v-ons-button v-if="name == null" @click="login">
             <v-ons-icon icon="md-facebook"></v-ons-icon> 
           </v-ons-button>
-          {{ name }} 
+          {{ name }}
         </div>
       </v-ons-toolbar>
 
@@ -58,11 +58,11 @@
     },
     methods: {
       login() {
-        var ref = window.open('https://rocky-scrubland-17659.herokuapp.com/auth/facebook?auth_origin_url=http://titeck.html.xdomain.jp/&omniauth_window_type=newWindow', "_blank", "location=yes");
+        var ref = window.open(process.env.API_DOMAIN_URL + 'auth/facebook?auth_origin_url=' + process.env.FRONT_DOMAIN_URL + '&omniauth_window_type=newWindow', "_blank", "location=yes");
 
         var messanger = setInterval(function() {
           var message = 'requestCredentials';
-          ref.postMessage(message, 'https://rocky-scrubland-17659.herokuapp.com/');
+          ref.postMessage(message, process.env.API_DOMAIN_URL);
         }, 500);
       },
       afterLogin(rec) {
