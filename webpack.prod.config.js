@@ -142,8 +142,8 @@ module.exports = {
     new ProgressBarPlugin(),
     new webpack.DefinePlugin({
       'process.env': {
-        'API_DOMAIN_URL': JSON.stringify('https://rocky-scrubland-17659.herokuapp.com/'),
-        'FRONT_DOMAIN_URL': JSON.stringify('http://titeck.html.xdomain.jp/')
+        'API_DOMAIN_URL': JSON.stringify('https://qa-app-server.herokuapp.com/'),
+        'FRONT_DOMAIN_URL': JSON.stringify('https://qaprotoui.herokuapp.com/')
       }
     })
   ],

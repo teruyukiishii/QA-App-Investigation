@@ -41,9 +41,9 @@ export default {
     }
   },
   mounted() {
-    axios.get(process.env.API_DOMAIN_URL + "questions")
+    axios.get(process.env.API_DOMAIN_URL + "v1/posts")
     .then(response => {
-      Vue.set(this, 'results', response.data)
+      Vue.set(this, 'results', response.data["posts"])
       this.$emit('refresh')
     })
   }
