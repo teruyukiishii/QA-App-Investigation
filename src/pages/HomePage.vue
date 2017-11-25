@@ -1,7 +1,7 @@
 <template>
   <v-ons-page>
     <v-ons-tabbar swipeable position="top"
-      :tabs="tabs"
+      :tabs="tabs2"
       :visible="true"
       :index.sync="activeIndex2"
     >
@@ -17,14 +17,14 @@ export default {
   data() {
     return {
       activeIndex2: 0,
-      tabs: [
+      tabs2: [
         {
           label: '質問',
           page: Questions
         },
         {
           label: '専門家',
-          page: Specialists
+          page: Specialists 
         }
       ]
     }

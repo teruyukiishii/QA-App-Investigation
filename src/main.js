@@ -10,6 +10,9 @@ import App from './App.vue';
 
 Vue.use(VueOnsen);
 
+var eventHub = new Vue();
+window.Event = eventHub;
+
 new Vue({
   el: '#app',
   template:'<app></app>',
