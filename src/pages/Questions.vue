@@ -11,12 +11,11 @@
 
 <script>
 import Questions_list from './Questions_list.vue';
-import Questions_detail from './Questions_detail.vue';
 
 export default {
   data() {
     return {
-      pageStack: [Questions_detail, Questions_list]
+      pageStack: [Questions_list]
     };
   },
   created() {
@@ -24,8 +23,7 @@ export default {
   },
   methods: {
     setDetail(event) {
-      this.pageStack.push(event[0]);
-      Event.$emit('question-id', event[1]);
+      this.pageStack.push(event);
     }
   }
 }

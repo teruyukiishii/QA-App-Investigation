@@ -43,7 +43,14 @@ export default {
         },
         methods: {
           push() {
-            Event.$emit('push-page', [Questions_detail, this.id]);
+            Event.$emit('push-page', {
+              extends: Questions_detail, 
+              data() {
+                return {
+                  questionid: id
+                }
+              }
+            });
           }
         }
       });
