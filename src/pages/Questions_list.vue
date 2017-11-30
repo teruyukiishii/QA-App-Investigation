@@ -12,8 +12,10 @@
 
 <script>
 import Vue from 'vue';
+import VueCookie from 'cookie-in-vue';
 import axios from 'axios';
 import Questions_detail from './Questions_detail.vue';
+
 export default {
   data() {
     return {
@@ -38,7 +40,7 @@ export default {
           return {
             index: i,
             id: id,
-            content: content 
+            content: content
           };
         },
         methods: {
@@ -54,14 +56,28 @@ export default {
           }
         }
       });
+    },
+    listQuestion() {
+      if (this.$store.state.login) {
+        axios.get(process.env.API_DOMAIN_URL + "questions", {
+          headers: {
+            'access-token': VueCookie.get('access-token'),
+            'client': VueCookie.get('client'),
+            'uid': VueCookie.get('uid')
+          }
+        })
+        .then(response => {
+          Vue.set(this, 'results', response.data)
+          this.$emit('refresh')
+        })
+      }
     }
   },
   mounted() {
-    axios.get(process.env.API_DOMAIN_URL + "v1/posts")
-    .then(response => {
-      Vue.set(this, 'results', response.data["posts"])
-      this.$emit('refresh')
+    this.$store.watch((state) => state.login, () => {
+      this.listQuestion() 
     })
+    this.listQuestion()
   }
 }
 </script>

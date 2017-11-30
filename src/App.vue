@@ -6,7 +6,7 @@
           <v-ons-toolbar-button>
             <v-ons-icon icon="md-menu"></v-ons-icon>
           </v-ons-toolbar-button>
-          <v-ons-button v-if="name == null" @click="login">
+          <v-ons-button v-if="name == ''" @click="login">
             <v-ons-icon icon="md-facebook"></v-ons-icon> 
           </v-ons-button>
           {{ name }}
@@ -27,6 +27,7 @@
   import Category from './pages/Category.vue'
   import MyQA     from './pages/MyQA.vue'
   import Register from './pages/Register.vue'
+  import VueCookie from 'cookie-in-vue'
 
   export default{
     data() {
@@ -66,15 +67,23 @@
           ref.postMessage(message, process.env.API_DOMAIN_URL);
         }, 500);
       },
-      afterLogin(rec) {
-        this.userName = rec.data['name']; 
+      recieveMessage(rec) {
+        if (rec.data != '') {
+          if (rec.data['type'] == 'login') {
+            this.userName = rec.data['data']['name'];
+            VueCookie.set('access-token', rec.data['data']['auth_token']);
+            VueCookie.set('client', rec.data['data']['client_id']);
+            VueCookie.set('uid', rec.data['data']['uid']);
+            this.$store.commit('set', true);
+          }
+        }
       }
     },
     created() {
-      window.addEventListener('message', this.afterLogin);
+      window.addEventListener('message', this.recieveMessage, false);
     },
     destroyed() {
-      window.removeEventListener('message', this.afterLogin);
+      window.removeEventListener('message', this.recieveMessage);
     },
     computed: {
       title() {
