@@ -60,7 +60,8 @@
     },
     methods: {
       login() {
-        var ref = window.open(process.env.API_DOMAIN_URL + 'auth/facebook?auth_origin_url=' + process.env.FRONT_DOMAIN_URL + '&omniauth_window_type=newWindow', "_blank", "location=yes");
+        //var ref = window.open(process.env.API_DOMAIN_URL + 'auth/facebook?auth_origin_url=' + process.env.FRONT_DOMAIN_URL + '&omniauth_window_type=newWindow', "_blank", "location=yes");
+        var ref = window.open(process.env.API_DOMAIN_URL + 'auth/stripe', "_blank", "location=yes");
 
         var messanger = setInterval(function() {
           var message = 'requestCredentials';
